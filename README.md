@@ -62,7 +62,7 @@ ReigniteSpiritV2/
 
 ---
 
-## 🧠 Main Features
+## Main Features
 
 - Full REST API for application logic  
 - React-based frontend with modular components  
@@ -73,7 +73,7 @@ ReigniteSpiritV2/
 
 ---
 
-## 🐳 Running With Docker
+## Running With Docker
 
 ```bash
 docker build -t reignite-spirit .
