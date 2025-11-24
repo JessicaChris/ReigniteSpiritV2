@@ -1,10 +1,10 @@
-# ReigniteSpirit V2 🔥  
+# ReigniteSpirit 
 A full-stack web application combining a modern web interface, a .NET API backend, containerized deployment, and an integrated **AI-powered Career Guidance Chatbot**.  
 Built for speed, clarity, and real-world use.
 
 ---
 
-## 🚀 Tech Stack
+## Tech Stack
 
 ### **Backend**
 - .NET Web API  
@@ -32,7 +32,7 @@ Built for speed, clarity, and real-world use.
 
 ---
 
-## 📚 Career Guidance Chatbot (Highlight Feature)
+## Career Guidance Chatbot (Highlight Feature)
 
 This project includes a **smart Career Guidance Bot** designed to:
 
@@ -46,5 +46,14 @@ The chatbot enhances the platform by making it interactive, educational, and hel
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
+ReigniteSpiritV2/
+│
+├── NLWeb.API/ # Backend - .NET Web API
+│
+├── frontend/ # React frontend (chatbot UI included)
+│
+├── DockerFile # Docker configuration
+│
+└── replace.txt # Utility or note file
