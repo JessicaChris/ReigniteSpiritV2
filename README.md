@@ -57,3 +57,25 @@ ReigniteSpiritV2/
 ├── DockerFile # Docker configuration
 │
 └── replace.txt # Utility or note file
+
+
+
+---
+
+## 🧠 Main Features
+
+- Full REST API for application logic  
+- React-based frontend with modular components  
+- AI-powered chatbot for career guidance  
+- Production deployment via Docker  
+- Clean commits with no exposed secrets  
+- Scalable and beginner-friendly architecture  
+
+---
+
+## 🐳 Running With Docker
+
+```bash
+docker build -t reignite-spirit .
+docker run -p 5000:80 reignite-spirit
+
