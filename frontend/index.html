@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your AI-Resilient Career Starts Here | ReigniteSpirit</title>
+        <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover future-proof, AI-resilient career paths personalized to your skills and goals. ReigniteSpirit helps you find stable jobs in the AI era.">
+
+    <meta name="keywords" content="AI career guidance, future-proof careers, AI proof jobs, career transformation, job automation safety, best careers for the future, AI career advisor, career path tool, reskill for AI, career assistant AI">
+
+    <!-- Open Graph for social media -->
+    <meta property="og:title" content="Find Your AI-Resilient Career Path | ReigniteSpirit">
+    <meta property="og:description" content="Use AI to discover future-proof careers personalized to your strengths. Instantly find roles safe from automation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://reignitespirit.com">
+    <meta property="og:image" content="https://reignitespirit.com/preview.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://reignitespirit.com">
+
+    <!-- NLWeb Semantic Tags -->
+    <meta name="ai-topic" content="AI career safety, future-proof jobs, job automation report, AI skill recommendation">
+    <meta name="ai-intent" content="help users find careers that survive automation">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -464,6 +483,21 @@
             </div>
         </div>
     </footer>
+
+    <!-- 🔍 Autocomplete Search Bar -->
+<div class="fixed top-24 right-6 z-50">
+    <input 
+        id="nlweb-search" 
+        type="text" 
+        placeholder="Search companies, careers..."
+        class="px-4 py-2 rounded-lg w-64 bg-white shadow-lg border focus:outline-none focus:ring-2 focus:ring-purple-500"
+    >
+    <div 
+        id="suggestions-box" 
+        class="hidden absolute mt-1 w-64 bg-white rounded-lg shadow-xl border max-h-60 overflow-y-auto"
+    ></div>
+</div>
+
 <!-- Floating Chatbot -->
 <div id="chatbot-wrapper" class="fixed bottom-6 right-6 z-50">
   <!-- Chat Toggle Button -->
@@ -494,6 +528,62 @@
 </div>
 
 <script>
+
+    window.addEventListener("DOMContentLoaded", () => {
+
+    const nlSearch = document.getElementById("nlweb-search");
+    const suggestionsBox = document.getElementById("suggestions-box");
+
+    nlSearch.addEventListener("input", async () => {
+        const query = nlSearch.value.trim();
+
+        if (query.length === 0) {
+            suggestionsBox.classList.add("hidden");
+            suggestionsBox.innerHTML = "";
+            return;
+        }
+
+        try {
+            const res = await fetch("https://localhost:5281/api/ask", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question: query })
+            });
+
+            const data = await res.json();
+            const suggestions = data.suggestions || [];
+
+            if (suggestions.length === 0) {
+                suggestionsBox.classList.add("hidden");
+                suggestionsBox.innerHTML = "";
+                return;
+            }
+
+            suggestionsBox.innerHTML = suggestions
+                .map(s => `
+                    <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        ${s}
+                    </div>
+                `)
+                .join("");
+
+            suggestionsBox.classList.remove("hidden");
+
+            Array.from(suggestionsBox.children).forEach((item, index) => {
+                item.addEventListener("click", () => {
+                    nlSearch.value = suggestions[index];
+                    suggestionsBox.classList.add("hidden");
+                });
+            });
+
+        } catch (err) {
+            console.error("Autocomplete Error:", err);
+        }
+    });
+
+});
+
+
 // Put YOUR key here (local use only, don’t deploy like this)
 const API_KEY = "";
 
@@ -561,6 +651,31 @@ async function sendToOpenAI(message) {
 
 
 
+<!-- NLWeb Structured FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does ReigniteSpirit help me choose a career?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ReigniteSpirit uses AI to analyze your skills and experience, then recommends future-proof, low-automation-risk career paths."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my job safe from AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our system evaluates the automation risk of your current role and suggests skill upgrades and safer alternatives."
+      }
+    }
+  ]
+}
+</script>
 
 
 </body>
